@@ -9,3 +9,7 @@
 [postgres-exporter](./postgres-promethues/README.md)
 
 [mongodb-exporter](./mongodb-promethues/README.md)
+
+[nginx-exporter-1](./nginx-promethues(1)/README.md)
+
+[nginx-exporter-2](./nginx-promethues(2)/README.md)
