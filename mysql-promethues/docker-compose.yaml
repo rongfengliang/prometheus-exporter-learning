@@ -1,0 +1,35 @@
+version: "3"
+services:
+  g:
+    image: grafana/grafana
+    ports:
+    - "3000:3000"
+  p:
+    image: prom/prometheus
+    volumes:
+    - "./conf/prometheus.yml:/etc/prometheus/prometheus.yml"
+    ports:
+    - "9090:9090"
+  gogs-service:
+    image: gogs/gogs
+    ports:
+      - "10022:22"
+      - "10080:3000"
+  mysql:
+    image: mysql:5.7.16
+    ports:
+      - 3306:3306
+    command: --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+    environment:
+      MYSQL_ROOT_PASSWORD: dalongrong
+      MYSQL_DATABASE: gogs
+      MYSQL_USER: gogs
+      MYSQL_PASSWORD: dalongrong
+      TZ: Asia/Shanghai
+  exporter:
+    image: prom/mysqld-exporter:latest
+    environment:
+    - "ATA_SOURCE_NAME=root:dalongrong@(mysql:3306)"
+    - "DATA_SOURCE_NAME=root:dalongrong@(mysql:3306)"
+    ports:
+    - "9104:9104"
