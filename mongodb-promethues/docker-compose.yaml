@@ -1,0 +1,22 @@
+version: "3"
+services:
+  g:
+    image: grafana/grafana
+    ports:
+    - "3000:3000"
+  p:
+    image: prom/prometheus
+    volumes:
+    - "./conf/prometheus.yml:/etc/prometheus/prometheus.yml"
+    ports:
+    - "9090:9090"
+  mongodb:
+    image: mongo:3.4
+    ports:
+    - "27017:27017"
+  exporter:
+    image: eses/mongodb_exporter
+    environment:
+    - "MONGODB_URI=mongodb://mongodb:27017"
+    ports:
+    - "9104:9104"

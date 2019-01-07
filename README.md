@@ -7,3 +7,5 @@
 [mysql-exporter](./mysql-promethues/README.md)
 
 [postgres-exporter](./postgres-promethues/README.md)
+
+[mongodb-exporter](./mongodb-promethues/README.md)
